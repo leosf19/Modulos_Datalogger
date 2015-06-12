@@ -1,0 +1,2 @@
+Para clonar:
+# git clone https://github.com/leosf19/Modulos_Datalogger.git /home/leo/Documentos/Datalogger-TESIS
