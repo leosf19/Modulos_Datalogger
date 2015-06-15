@@ -1,7 +1,6 @@
 #  sensor.py
 #  Copyright 2015 Leandro Saavedra
 #  
-import Queue
 
 class Sensor(object):
 	'''
@@ -11,8 +10,6 @@ class Sensor(object):
 	def __init__(self,name):
 		self.name = name
 		self.value = 0
-		#self.colaSensor = Queue.Queue() # Cola donde va a guardar los datos que va pidiendo cada sensor
-											# No la voy a usar porque tampoco necesito algo critico
 	
 	# Devuelve el nombre del sensor	
 	def getName(self):
@@ -40,38 +37,41 @@ class Sensor(object):
 		# Aca deberia hacer una llamada al metodo mas abstracto "sensar(name)"
 		# donde acorde al nombre del sensor que lo llama pide de la cola de ese sensor
 		# el valor 
-
-class sensV_Bat(Sensor):
+'''
+class TS60V_Bat(Sensor):
 	"Clase que representa a un Sensor."
 	def __init__(self,name):
 		# llamamos al constructor Sensor
-		Sensor.__init__(self,name)
+		Sensor.__init__(self,"TS60-Vbat")
+			
+	def getValue(self):
+		return self.valorSensores["TS60-Vbat"]
 		
-class sensV_pan(Sensor):
-	def __init__(self,name):
+class TS60V_pan(Sensor):
+	def __init__(self,name="TS60-Vpan"):
 		# llamamos al constructor Sensor
 		Sensor.__init__(self,name)
 		
-class sensI_carga(Sensor):
-	def __init__(self,name):
+class TS60I_carga(Sensor):
+	def __init__(self,name="TS60-Icar"):
 		# llamamos al constructor de Sensor
 		Sensor.__init__(self,name)
 	
-class sensI_load(Sensor):
-	def __init__(self,name):
+class TS60I_load(Sensor):
+	def __init__(self,name="TS60-Iload"):
 		# llamamos al constructor Sensor
 		Sensor.__init__(self,name)
 		
-class sensT_equipo(Sensor):
-	def __init__(self,name):
+class TS60T_equipo(Sensor):
+	def __init__(self,name="TS60-Teq"):
 		# llamamos al constructor Sensor
 		Sensor.__init__(self,name)
 	
-class sensT_bat(Sensor):
-	def __init__(self,name):
+class TS60T_bat(Sensor):
+	def __init__(self,name="TS60-Tbat"):
 		# llamamos al constructor Sensor
 		Sensor.__init__(self,name)
-		
+'''		
 '''
 sens1=sensV_Bat('V_bat')
 print sens1.getName()
@@ -83,4 +83,4 @@ print sens1.getValue()
 #sens2=sensT_bat('T_bat')
 #print sens2.getName()		
 '''
-	
+#print TS60I_carga().getName()
