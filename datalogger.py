@@ -11,12 +11,6 @@ import cPickle as pickle
 
 def main():
 
-	f1 = file('/home/leo/Documentos/Datalogger-TESIS/temp.pkl', 'wb')
-	pickle.dump(TS60V_pan(), f1, True)
-	f1.close()
-	
-	f2 = file('/home/leo/Documentos/Datalogger-TESIS/temp.pkl', 'rb') 
-	a2 = pickle.load(f2)
 	# Tiene que tener un método ListarSensores que me muestre todos los 
 	# sensores que esta manejando.
 	'''
@@ -24,15 +18,47 @@ def main():
 	print TS60I_load().getName()
 	print TS60V_pan().getName()
 	'''
-	Sensor = { 'TS60-V_bat' :TS60V_pan,
-				'TS60-V_pan' : TS60T_bat}
+	Sensor = { 'TS60-V_bat' : [TS60V_Bat(),10],
+				'TS60-V_pan' : [TS60V_pan(),15],
+				'TS60-I_carga' : [TS60I_carga(),10],
+				'TS60-I_load' : [TS60I_load(),10],
+				'TS60-T_equipo' : [TS60T_equipo(),25],
+				'TS60-T_bat' : [TS60T_bat(),25]}
 	
-	x = TS60V_pan()
-	y = TS60T_bat()
+	f1 = file('/home/leo/Documentos/Datalogger-TESIS/temp.pkl', 'wb')
+	pickle.dump(Sensor,f1,True)
+	#pickle.dump(TS60V_pan(), f1, True)
+	f1.close()
+	
+	f2 = file('/home/leo/Documentos/Datalogger-TESIS/temp.pkl', 'rb') 
+	sensores = pickle.load(f2)
+
+	tiempo = 1
+	
 	while 1:
-		print "V_pan: ",a2.getValor('TS60-V_bat')
+		
+		for key,value in sorted(sensores.items()):
+			if tiempo%value[1]==0:
+				print tiempo%value[1]
+				print key
+				print "Tiempo: ",tiempo
+				print "Tsensor: ",value[1]
+				print sensores[key][0].getValor(key)
+				#time.sleep(2)
+			else:
+				#tiempo = tiempo +1
+				print "------------------------------", tiempo
+				#time.sleep(5)
+				pass
+			#time.sleep(2)
+		tiempo += 1
+		'''
+		time.sleep(5)
+		print "T_bat: ",sensores['TS60-T_bat'][0].getValor('TS60-T_bat')
 		#print "T_bat: ",y.getValor(TS60T_bat().getName())
-		time.sleep(20)
+		time.sleep(15)
+		print "V_bat: ",sensores['TS60-V_bat'][0].getValor('TS60-V_bat')
+		'''
 		
 	return 0
 
