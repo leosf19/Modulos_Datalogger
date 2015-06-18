@@ -39,11 +39,13 @@ def main():
 		
 		for key,value in sorted(sensores.items()):
 			if tiempo%value[1]==0:
-				print tiempo%value[1]
 				print key
 				print "Tiempo: ",tiempo
 				print "Tsensor: ",value[1]
-				print sensores[key][0].getValor(key)
+				valor = sensores[key][0].getValor(key)
+				print valor
+				BaseDatos(5).storeData("%.2f" %valor,sensores[key][0].getName(),"P01")
+				#print sensores[key][0].getName()
 				#time.sleep(2)
 			else:
 				#tiempo = tiempo +1
@@ -52,6 +54,7 @@ def main():
 				pass
 			#time.sleep(2)
 		tiempo += 1
+		time.sleep(5)
 		'''
 		time.sleep(5)
 		print "T_bat: ",sensores['TS60-T_bat'][0].getValor('TS60-T_bat')

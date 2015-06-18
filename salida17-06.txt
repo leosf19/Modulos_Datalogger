@@ -1,0 +1,366 @@
+#######################################################################################3
+		time.sleep(10)
+		print "T_bat: ",sensores['TS60-T_bat'].getValor('TS60-T_bat')
+		time.sleep(65)
+		print "V_bat: ",sensores['TS60-V_bat'].getValor('TS60-V_bat')
+
+#########################################################################################
+
+
+T_bat:  tiempoInicial:  1434578110.0
+tiempoTranscurrido:  10.0
+{'TS60-I_load': 0, 'TS60-V_bat': 0, 'TS60-T_bat': 0, 'TS60-V_pan': 0, 'TS60-T_equipo': 0, 'TS60-I_carga': 0}
+0
+V_bat:  tiempoInicial:  1434578110.0
+tiempoTranscurrido:  75.0
+{'TS60-I_load': 0, 'TS60-V_bat': 0, 'TS60-T_bat': 0, 'TS60-V_pan': 0, 'TS60-T_equipo': 0, 'TS60-I_carga': 0}
+0103120f8400000540001f00000f8400160019000061e1 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  22
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+11.72
+T_bat:  tiempoInicial:  1434578120.0
+tiempoTranscurrido:  77.0
+{'TS60-I_load': 0, 'TS60-V_bat': 0, 'TS60-T_bat': 0, 'TS60-V_pan': 0, 'TS60-T_equipo': 0, 'TS60-I_carga': 0}
+0103120f8400000540001f00000f8400160019000061e1 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  22
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+25
+V_bat:  tiempoInicial:  1434578185.0
+tiempoTranscurrido:  78.0
+{'TS60-I_load': 0.0, 'TS60-V_bat': 11.72, 'TS60-T_bat': 25, 'TS60-V_pan': 5.71, 'TS60-T_equipo': 22, 'TS60-I_carga': 0.06}
+0103120f8400000540001f00000f8400160019000061e1 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  22
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+11.72
+T_bat:  tiempoInicial:  1434578197.0
+tiempoTranscurrido:  77.0
+{'TS60-I_load': 0.0, 'TS60-V_bat': 11.72, 'TS60-T_bat': 25, 'TS60-V_pan': 5.71, 'TS60-T_equipo': 22, 'TS60-I_carga': 0.06}
+0103120f8400000540001f00000f8400160019000061e1 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  22
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+25
+V_bat:  tiempoInicial:  1434578263.0
+tiempoTranscurrido:  77.0
+{'TS60-I_load': 0.0, 'TS60-V_bat': 11.72, 'TS60-T_bat': 25, 'TS60-V_pan': 5.71, 'TS60-T_equipo': 22, 'TS60-I_carga': 0.06}
+0103120f8400000540001f00000f8400160019000061e1 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  22
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+11.72
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Sensor = { 'TS60-V_bat' : [TS60V_pan(),10],
+				'TS60-V_pan' : [TS60T_bat(),15],
+				'TS60-I_carga' : [TS60I_carga(),10],
+				'TS60-I_load' : [TS60I_load(),10],
+				'TS60-T_equipo' : [TS60T_equipo(),25],
+				'TS60-T_bat' : [TS60T_bat(),25]}
+
+
+for key,value in sorted(sensores.items()):
+			if tiempo%value[1]==0:
+				print tiempo%value[1]
+				print key
+				print "Tiempo: ",tiempo
+				print "Tsensor: ",value[1]
+				print sensores[key][0].getValor(key)
+				#time.sleep(2)
+			else:
+				tiempo = tiempo +1
+				print "------------------------------", tiempo
+				#time.sleep(5)
+				
+			time.sleep(2)
+
+
+------------------------------ 2
+------------------------------ 3
+------------------------------ 4
+------------------------------ 5
+------------------------------ 6
+------------------------------ 7
+------------------------------ 8
+------------------------------ 9
+------------------------------ 10
+------------------------------ 11
+------------------------------ 12
+------------------------------ 13
+------------------------------ 14
+------------------------------ 15
+------------------------------ 16
+------------------------------ 17
+------------------------------ 18
+------------------------------ 19
+------------------------------ 20
+0
+TS60-I_load
+Tiempo:  20
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583765, 0.0]
+------------------------------ 21
+------------------------------ 22
+------------------------------ 23
+------------------------------ 24
+------------------------------ 25
+------------------------------ 26
+------------------------------ 27
+------------------------------ 28
+------------------------------ 29
+------------------------------ 30
+0
+TS60-I_carga
+Tiempo:  30
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583788, 0.06]
+0
+TS60-I_load
+Tiempo:  30
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583792, 0.0]
+------------------------------ 31
+------------------------------ 32
+------------------------------ 33
+------------------------------ 34
+------------------------------ 35
+------------------------------ 36
+------------------------------ 37
+------------------------------ 38
+------------------------------ 39
+------------------------------ 40
+0
+TS60-I_carga
+Tiempo:  40
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583815, 0.06]
+0
+TS60-I_load
+Tiempo:  40
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583818, 0.0]
+------------------------------ 41
+------------------------------ 42
+------------------------------ 43
+------------------------------ 44
+------------------------------ 45
+------------------------------ 46
+------------------------------ 47
+------------------------------ 48
+------------------------------ 49
+------------------------------ 50
+0
+TS60-I_carga
+Tiempo:  50
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583841, 0.06]
+0
+TS60-I_load
+Tiempo:  50
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583845, 0.0]
+0
+TS60-T_bat
+Tiempo:  50
+Tsensor:  25
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583848, 25]
+0
+TS60-T_equipo
+Tiempo:  50
+Tsensor:  25
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583851, 23]
+0
+TS60-V_bat
+Tiempo:  50
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583855, 11.72]
+------------------------------ 51
+------------------------------ 52
+------------------------------ 53
+------------------------------ 54
+------------------------------ 55
+------------------------------ 56
+------------------------------ 57
+------------------------------ 58
+------------------------------ 59
+------------------------------ 60
+------------------------------ 61
+------------------------------ 62
+------------------------------ 63
+------------------------------ 64
+------------------------------ 65
+------------------------------ 66
+------------------------------ 67
+------------------------------ 68
+------------------------------ 69
+------------------------------ 70
+0
+TS60-I_load
+Tiempo:  70
+Tsensor:  10
+0103120f8400000540001f00000f840017001900005c21 
+
+Battery voltage, filtered= 11.72
+Battery sense voltage, filtered= 0.00
+Array/Load voltage, filtered= 5.71
+Charging current, filtered= 0.06
+Load current, filtered= 0.00
+Battery voltage, slow filter= 11.72 V
+Heatsink temperature=  23
+Battery temperature=  25
+Charge regulator reference voltage= 0.00
+[1434583898, 0.0]
+------------------------------ 71
+------------------------------ 72
+------------------------------ 73
+
+
+
