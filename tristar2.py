@@ -14,38 +14,62 @@ class TristarTS60(object):
 	global tiempoInicial
 	global tiempoTranscurrido 
 	
+	valorSensor = { 'TS60-V_bat' : [int(time.time()),0],
+					'TS60-V_pan' : [int(time.time()),0],
+					'TS60-I_carga' : [int(time.time()),0],
+					'TS60-I_load' : [int(time.time()),0],
+					'TS60-T_equipo' : [int(time.time()),0],
+					'TS60-T_bat' : [int(time.time()),0]}
+	
 	def __init__(self,name):
 		
 		self.name = name
 		
-		self.tiempoInicial = time.time()
+		# No olvidar que time.time() es en epoch time
+		#self.tiempoInicial = round(time.time())
+		
 		# Diccionario que va a tener los ultimos valores de los sensores,
 		# que pida por puerto serial al equipo, siendo mas facil ingresar
 		# mediante el uso de la key
+		'''
 		self.valorSensor = { 'TS60-V_bat' : 0,
 								'TS60-V_pan' : 0,
 								'TS60-I_carga' : 0,
 								'TS60-I_load' : 0,
 								'TS60-T_equipo' : 0,
 								'TS60-T_bat' : 0}
-		
+		'''
+		'''
+		self.valorSensor = { 'TS60-V_bat' : [int(time.time()),0],
+								'TS60-V_pan' : [int(time.time()),0],
+								'TS60-I_carga' : [int(time.time()),0],
+								'TS60-I_load' : [int(time.time()),0],
+								'TS60-T_equipo' : [int(time.time()),0],
+								'TS60-T_bat' : [int(time.time()),0]}
+		'''
 	def getName(self):
 		return self.name
 	
 	def getValor(self,nombre_sensor):
 		# Verifico si el tiempo transcurrido en segs es mucho (> 1 min)
-		self.tiempoTranscurrido = time.time()-self.tiempoInicial
+		#tiempoTranscurrido = round(time.time()-self.tiempoInicial)
+		tiempoTranscurrido = round(time.time()-self.valorSensor[nombre_sensor][0])
 		#tiempoTranscurrido = tiempoTranscurrido / 60
-		print "tiempoInicial: ", self.tiempoInicial
-		print "tiempoTranscurrido: ",self.tiempoTranscurrido
-		print self.valorSensor
-		self.tiempoInicial = self.tiempoTranscurrido
+		#tiempoTranscurrido = time.time() - self.valorSensor[nombre_sensor][0]
 		
-		if self.tiempoTranscurrido < 36000: # paso mas de 1 segundo
-			return self.valorSensor[nombre_sensor]
+		#print "tiempoInicial: ", self.tiempoInicial
+		#print "tiempoInicial: ", self.valorSensor[nombre_sensor][0]
+		print "tiempoTranscurrido: ",tiempoTranscurrido
+		#self.tiempoInicial = self.tiempoTranscurrido + self.tiempoInicial
+		
+		if tiempoTranscurrido < 20: 
+			#self.valorSensor[nombre_sensor][0] = tiempoTranscurrido
+			print self.valorSensor
+			return self.valorSensor[nombre_sensor][1]
 		else:
 			self.readRegisters()
-			return self.valorSensor[nombre_sensor]
+			print self.valorSensor
+			return self.valorSensor[nombre_sensor][1]
 			
 	'''#################################################################
 	Se encarga de crear la conectividad serial
@@ -143,46 +167,59 @@ class TristarTS60(object):
 		sp.close()
 		
 		# Actualizo los valores de cada sensor en el diccionario
+		'''
 		self.valorSensor['TS60-V_bat']=round(adc_vb_f,2)
 		self.valorSensor['TS60-V_pan']=round(adc_vx_f,2)
 		self.valorSensor['TS60-I_carga']=round(adc_ipv_f,2)
 		self.valorSensor['TS60-I_load']=round(adc_iload_f,2)
 		self.valorSensor['TS60-T_equipo']=T_hs
 		self.valorSensor['TS60-T_bat']=T_batt
+		'''
+		self.valorSensor['TS60-V_bat']=[int(time.time()),round(adc_vb_f,2)]
+		self.valorSensor['TS60-V_pan']=[int(time.time()),round(adc_vx_f,2)]
+		self.valorSensor['TS60-I_carga']=[int(time.time()),round(adc_ipv_f,2)]
+		self.valorSensor['TS60-I_load']=[int(time.time()),round(adc_iload_f,2)]
+		self.valorSensor['TS60-T_equipo']=[int(time.time()),T_hs]
+		self.valorSensor['TS60-T_bat']=[int(time.time()),T_batt]
 		
 class TS60V_Bat(TristarTS60):
-	"Clase que representa a un Sensor."
-	def __init__(self,name="TS60-V_bat"):
+	def __init__(self):
+		self.name="TS60-V_bat"
 		# llamamos al constructor Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 	
-	def getValor(self):
-		return TristarTS60.getValor("TS60-V_bat")
+		#def getValor(self):
+		#	return TristarTS60.getValor("TS60-V_bat")
 		
 class TS60V_pan(TristarTS60):
-	def __init__(self,name="TS60-V_pan"):
+	def __init__(self):
+		self.name="TS60-V_pan"
 		# llamamos al constructor Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 		
 class TS60I_carga(TristarTS60):
-	def __init__(self,name="TS60-I_car"):
+	def __init__(self):
+		self.name = "TS60-I_car"
 		# llamamos al constructor de Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 	
 class TS60I_load(TristarTS60):
-	def __init__(self,name="TS60-I_load"):
+	def __init__(self):
+		self.name = "TS60-I_load"
 		# llamamos al constructor Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 		
 class TS60T_equipo(TristarTS60):
-	def __init__(self,name="TS60-T_equipo"):
+	def __init__(self):
+		self.name="TS60-T_equipo"
 		# llamamos al constructor Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 	
 class TS60T_bat(TristarTS60):
-	def __init__(self,name="TS60-T_bat"):
+	def __init__(self):
+		self.name="TS60-T_bat"
 		# llamamos al constructor Sensor
-		TristarTS60.__init__(self,name)
+		#TristarTS60.__init__(self,name)
 	
 	
 		
