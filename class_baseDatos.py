@@ -43,9 +43,10 @@ class BaseDatos(object):
 			
 			#Escritura del archivo
 			daily_reg.write(date_log + " - ")	
-			daily_reg.write(board_code + " ")
+			#daily_reg.write(board_code + " ")
 			daily_reg.write(sensor_code + " ")
 			daily_reg.write(values + " ")
+			daily_reg.write(board_code + " ")
 			daily_reg.write('\r\n')
 			
 			daily_reg.close()
